@@ -132,8 +132,8 @@ public class AddressBook {
 
 
         /*
-     edit personmethod to edit the person detail
-     */
+         edit personmethod to edit the person detail
+         */
         public static void editPersonalDetails() {
                 System.out.println("Enter the name to edit in the addressBook");
                 String editName = Sc.next();
@@ -179,14 +179,28 @@ public class AddressBook {
                         }
                 }
         }
+        /*
+         removepersondetails method to remove the person data
+         */
+        public static void removePersonDetails() {
+                System.out.print("Enter the name you want to remove through the addressBook: ");
+                String choice = Sc.next();
+                for (int i = 0; i < list.size(); i++) {
+                        if (list.get(i).getFirstName().equals(choice)) {
+                                list.remove(i);
+                        } else {
+                                System.out.println("Enter the proper choice");
+                        }
+                }
+        }
 
         public static void main(String[] args) {
                 System.out.println("Welcome to the Address Book");
-                //creating the personaldetails class object to add the person detail
+                //creating the personal1Details class object to add the person detail
 
                 int Val = 0;
                 do {
-                        System.out.println("If You Want To Add, Edit Address Book Then Enter 1.Add 2.Edit:  ");
+                        System.out.println("If You Want To Add, Edit Address Book Then Enter 1.Add 2.Edit 3.Remove:  ");
                         int choice = Sc.nextInt();
                         switch (choice) {
                                 case 1:
@@ -194,6 +208,8 @@ public class AddressBook {
                                         break;
                                 case 2:
                                         editPersonalDetails();
+                                        break;
+                                case 3: removePersonDetails();
                                         break;
                         }
                         personalDetails personalDetail1 = addPerson();
@@ -203,7 +219,7 @@ public class AddressBook {
                 }while (Val==1);
                 System.out.println(list.size());
                 for (int i = 0; i <list.size(); i++) {
-                        addressBook.display(list.get(i)); //display method take the input as list and print the data
+                        AddressBook.display(list.get(i)); //display method take the input as list and print the data
                         System.out.println();
                 }
         }
