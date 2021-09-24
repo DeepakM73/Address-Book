@@ -131,26 +131,80 @@ public class AddressBook {
         }
 
 
-        public static void main(String[] args) {
-                //creating the personaldetails class object to add the person detail
-                personalDetails personalDetail1 = addPerson();
-                boolean isAdd=true;
-                while(isAdd){
-                        personalDetails personDetail1=AddressBook.addPerson();
-                        list.add(personalDetail1);
-            /*Here we can ask user if he wants to add another person details
-            if user choose 1 then user can add another person detail
-            if user chose 0 then it will come out of loop
-            */
-                        System.out.println("If you Want to add other person Then Enter 1 or 0");
-                        int num=Sc.nextInt();
-                        if(num==1)
-                                isAdd=true;
-                        else
-                                isAdd=false;
+        /*
+     edit personmethod to edit the person detail
+     */
+        public static void editPersonalDetails() {
+                System.out.println("Enter the name to edit in the addressBook");
+                String editName = Sc.next();
+                for (int i = 0; i < list.size(); i++) {
+                        if (list.get(i).getFirstName().equals(editName)) {
+                                System.out.print("Enter the below data user need to edit the addressBook");
+                                System.out.println("Press 1.firstname 2.lastname 3.address 4.city 5.state 6.email 7.zip 8.phone");
+                                int choice = Sc.nextInt();
+                                switch (choice) {
+                                        case 1:
+                                                System.out.println("Enter the firstname");
+                                                list.get(i).setFirstName(Sc.next());
+                                                break;
+                                        case 2:
+                                                System.out.println("Enter the lastname");
+                                                list.get(i).setLastName(Sc.next());
+                                                break;
+                                        case 3:
+                                                System.out.println("Enter the address");
+                                                list.get(i).setAddress(Sc.next());
+                                                break;
+                                        case 4:
+                                                System.out.println("Enter the city");
+                                                list.get(i).setCity(Sc.next());
+                                                break;
+                                        case 5:
+                                                System.out.println("Enter the state");
+                                                list.get(i).setState(Sc.next());
+                                                break;
+                                        case 6:
+                                                System.out.println("Emter the email");
+                                                list.get(i).setEmail(Sc.next());
+                                                break;
+                                        case 7:
+                                                System.out.println("Enter the zip");
+                                                list.get(i).setZip(Sc.nextInt());
+                                                break;
+                                        case 8:
+                                                System.out.println("Enter the phone");
+                                                list.get(i).setPhoneNumber(Sc.nextInt());
+                                                break;
+                                }
+                        }
                 }
-                for (int i=0;i<list.size();i++){
-                        AddressBook.display(list.get(i)); //display method take the input as list and print the data
+        }
+
+        public static void main(String[] args) {
+                System.out.println("Welcome to the Address Book");
+                //creating the personaldetails class object to add the person detail
+
+                int Val = 0;
+                do {
+                        System.out.println("If You Want To Add, Edit Address Book Then Enter 1.Add 2.Edit:  ");
+                        int choice = Sc.nextInt();
+                        switch (choice) {
+                                case 1:
+                                        addPerson();
+                                        break;
+                                case 2:
+                                        editPersonalDetails();
+                                        break;
+                        }
+                        personalDetails personalDetail1 = addPerson();
+                        list.add(personalDetail1);
+                        System.out.println("If You Want to Make Changes In AddressBook Then Enter 1 Else 0: ");
+                        Val = Sc.nextInt();
+                }while (Val==1);
+                System.out.println(list.size());
+                for (int i = 0; i <list.size(); i++) {
+                        addressBook.display(list.get(i)); //display method take the input as list and print the data
+                        System.out.println();
                 }
         }
 }
