@@ -133,12 +133,24 @@ public class AddressBook {
 
         public static void main(String[] args) {
                 //creating the personaldetails class object to add the person detail
-                personalDetails personalDetails = addPerson();
-                // personaldetails object give to the list
-                list.add(personalDetails);
-                for (int i = 0; i < list.size(); i++) {
+                personalDetails personalDetail1 = addPerson();
+                boolean isAdd=true;
+                while(isAdd){
+                        personalDetails personDetail1=AddressBook.addPerson();
+                        list.add(personalDetail1);
+            /*Here we can ask user if he wants to add another person details
+            if user choose 1 then user can add another person detail
+            if user chose 0 then it will come out of loop
+            */
+                        System.out.println("If you Want to add other person Then Enter 1 or 0");
+                        int num=Sc.nextInt();
+                        if(num==1)
+                                isAdd=true;
+                        else
+                                isAdd=false;
+                }
+                for (int i=0;i<list.size();i++){
                         AddressBook.display(list.get(i)); //display method take the input as list and print the data
                 }
         }
 }
-
